@@ -1,6 +1,6 @@
 {
   "name": "rekhyt/php-dependency-checker",
-  "description": "CLI tool to check dependencies utilizing the API described under https://security.sensiolabs.org/api",
+  "description": "CLI tool to check dependencies",
   "type": "project",
   "license": "MIT",
   "authors": [
