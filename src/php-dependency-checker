@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+
+use Rekhyt\PhpDependencyChecker\Vulnerability\Repository\SLApi\Vulnerability;
+use Rekhyt\PhpDependencyChecker\Vulnerability\Repository\SLApi\VulnerabilityFiltered;
+use Rekhyt\PhpDependencyChecker\Vulnerability\ValueObject\ComposerLockFileContents;
+use Rekhyt\PhpDependencyChecker\Vulnerability\ValueObject\PackageException;
+
+$packageExceptionList = getPackageExceptionList($argv);
+
+
+$repository = ((!empty($packageExceptionList)))
+    ? new VulnerabilityFiltered(
+        new Vulnerability(),
+        new Rekhyt\PhpDependencyChecker\Vulnerability\Filter\VulnerabilityListFilterPackageExceptionList(
+            $packageExceptionList
+        )
+    )
+    : new Vulnerability();
+
+$vulnerabilities = $repository->getAllByComposerLockFileContents(getComposerLockFileContents($argv));
+
+/**
+ * @param array $argv
+ *
+ * @return ComposerLockFileContents
+ */
+function getComposerLockFileContents(array $argv)
+{
+    return new ComposerLockFileContents();
+}
+
+/**
+ * @param array $argv
+ *
+ * @return PackageException[]
+ */
+function getPackageExceptionList(array $argv)
+{
+    return [];
+}
