@@ -113,6 +113,43 @@
             "time": "2016-10-10T12:19:37+00:00"
         },
         {
+            "name": "rekhyt/ddd-base",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/Rekhyt/ddd-base.git",
+                "reference": "924c36d8b94d70e3af7da0be5a663e80d52b8583"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/Rekhyt/ddd-base/get/924c36d8b94d70e3af7da0be5a663e80d52b8583.zip",
+                "reference": "924c36d8b94d70e3af7da0be5a663e80d52b8583",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rekhyt\\DDDBase\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Timo Ebel",
+                    "email": "timo.ebel@gmail.com"
+                }
+            ],
+            "description": "A set of base classes commonly usable in a DDD project.",
+            "homepage": "https://bitbucket.org/Rekhyt/ddd-base",
+            "time": "2017-11-13T22:21:54+00:00"
+        },
+        {
             "name": "sensiolabs/security-checker",
             "version": "v4.1.6",
             "source": {
@@ -344,7 +381,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "rekhyt/ddd-base": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

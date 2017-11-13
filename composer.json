@@ -11,6 +11,7 @@
   ],
   "require": {
     "php": ">=5.6",
+    "rekhyt/ddd-base": "dev-master@dev",
     "sensiolabs/security-checker": "^4.1"
   }
 }
