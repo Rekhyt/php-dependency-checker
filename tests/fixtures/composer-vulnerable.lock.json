@@ -1,0 +1,83 @@
+{
+  "_readme": [
+    "This file locks the dependencies of your project to a known state",
+    "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+    "This file is @generated automatically"
+  ],
+  "content-hash": "4a6fa2c20169cbf84a61c43249af3526",
+  "packages": [
+    {
+      "name": "phpmailer/phpmailer",
+      "version": "v5.2.12",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/PHPMailer/PHPMailer.git",
+        "reference": "5dd754112d07ab7480824c2916689ce06f83a842"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/5dd754112d07ab7480824c2916689ce06f83a842",
+        "reference": "5dd754112d07ab7480824c2916689ce06f83a842",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.0.0"
+      },
+      "require-dev": {
+        "phpdocumentor/phpdocumentor": "*",
+        "phpunit/phpunit": "4.3.*"
+      },
+      "suggest": {
+        "league/oauth2-client": "Needed for Gmail's XOAUTH2 authentication system"
+      },
+      "type": "library",
+      "autoload": {
+        "classmap": [
+          "class.phpmailer.php",
+          "class.phpmaileroauth.php",
+          "class.oauth.php",
+          "class.smtp.php",
+          "class.pop3.php",
+          "extras/EasyPeasyICS.php",
+          "extras/ntlm_sasl_client.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "LGPL-2.1"
+      ],
+      "authors": [
+        {
+          "name": "Jim Jagielski",
+          "email": "jimjag@gmail.com"
+        },
+        {
+          "name": "Marcus Bointon",
+          "email": "phpmailer@synchromedia.co.uk"
+        },
+        {
+          "name": "Andy Prevost",
+          "email": "codeworxtech@users.sourceforge.net"
+        },
+        {
+          "name": "Brent R. Matzelle"
+        }
+      ],
+      "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+      "time": "2015-09-02T10:40:37+00:00"
+    }
+  ],
+  "packages-dev": [],
+  "aliases": [],
+  "minimum-stability": "stable",
+  "stability-flags": [],
+  "prefer-stable": false,
+  "prefer-lowest": false,
+  "platform": {
+    "php": ">=5.6"
+  },
+  "platform-dev": [],
+  "platform-overrides": {
+    "php": "5.6"
+  }
+}
