@@ -9,9 +9,27 @@
       "email": "timo.ebel@gmail.com"
     }
   ],
+  "config": {
+    "platform": {
+      "php": "5.6"
+    }
+  },
   "require": {
     "php": ">=5.6",
     "rekhyt/ddd-base": "dev-master@dev",
     "sensiolabs/security-checker": "^4.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rekhyt\\PhpDependencyChecker\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Rekhyt\\PhpDependencyChecker\\Test\\": "test/"
+    }
   }
 }
