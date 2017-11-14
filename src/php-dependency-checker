@@ -1,22 +1,25 @@
 #!/usr/bin/env php
 <?php
 
+use GuzzleHttp\Client;
 use Rekhyt\PhpDependencyChecker\Vulnerability\Repository\SLApi\Vulnerability;
 use Rekhyt\PhpDependencyChecker\Vulnerability\Repository\SLApi\VulnerabilityFiltered;
+use Rekhyt\PhpDependencyChecker\Vulnerability\ValueObject\ApiEndpoint;
 use Rekhyt\PhpDependencyChecker\Vulnerability\ValueObject\ComposerLockFileContents;
-use Rekhyt\PhpDependencyChecker\Vulnerability\ValueObject\PackageException;
+use Rekhyt\PhpDependencyChecker\Vulnerability\ValueObject\PackageName;
 
 $packageExceptionList = getPackageExceptionList($argv);
 
 
-$repository = ((!empty($packageExceptionList)))
-    ? new VulnerabilityFiltered(
-        new Vulnerability(),
+$repository = new Vulnerability(new Client(), new ApiEndpoint('https://security.sensiolabs.org/check_lock'));
+if ((!empty($packageExceptionList))) {
+    $repository = new VulnerabilityFiltered(
+        $repository,
         new Rekhyt\PhpDependencyChecker\Vulnerability\Filter\VulnerabilityListFilterPackageExceptionList(
             $packageExceptionList
         )
-    )
-    : new Vulnerability();
+    );
+}
 
 $vulnerabilities = $repository->getAllByComposerLockFileContents(getComposerLockFileContents($argv));
 
@@ -27,13 +30,13 @@ $vulnerabilities = $repository->getAllByComposerLockFileContents(getComposerLock
  */
 function getComposerLockFileContents(array $argv)
 {
-    return new ComposerLockFileContents();
+    return new ComposerLockFileContents('');
 }
 
 /**
  * @param array $argv
  *
- * @return PackageException[]
+ * @return PackageName[]
  */
 function getPackageExceptionList(array $argv)
 {
