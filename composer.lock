@@ -243,12 +243,12 @@
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/Rekhyt/ddd-base.git",
-                "reference": "924c36d8b94d70e3af7da0be5a663e80d52b8583"
+                "reference": "d6d2fab59e45f6efeb915b9f7096a1f1629786fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/Rekhyt/ddd-base/get/924c36d8b94d70e3af7da0be5a663e80d52b8583.zip",
-                "reference": "924c36d8b94d70e3af7da0be5a663e80d52b8583",
+                "url": "https://bitbucket.org/Rekhyt/ddd-base/get/d6d2fab59e45f6efeb915b9f7096a1f1629786fb.zip",
+                "reference": "d6d2fab59e45f6efeb915b9f7096a1f1629786fb",
                 "shasum": ""
             },
             "require": {
@@ -272,7 +272,7 @@
             ],
             "description": "A set of base classes commonly usable in a DDD project.",
             "homepage": "https://bitbucket.org/Rekhyt/ddd-base",
-            "time": "2017-11-13T22:21:54+00:00"
+            "time": "2017-11-18T18:43:47+00:00"
         },
         {
             "name": "splitbrain/php-cli",
