@@ -47,7 +47,7 @@ Put one package per line as referenced in composer.json:
 to be done
 
 ## Contributing
-to be done
+See the [CONTRIBUTING](CONTRIBUTING.md) file for more information on how to help making this a better piece of software.
 
 ## License
 The Shopgate Cart Integration SDK is available under the MIT License.
