@@ -11,7 +11,6 @@ For build & deployment integration it will exit with an exit code of
 
 To be able to build even if your dependencies have vulnerabilities that don't affect your project (flawed code not used)
 or there is no update, yet, an exception list can be defined.
-[[to be done]](https://github.com/Rekhyt/php-dependency-checker/issues/5)
 
 For more information about how that API is working, refer to
 https://github.com/sensiolabs/security-checker.
