@@ -22,6 +22,7 @@ use splitbrain\phpcli\Options;
 
 class PhpDependencyCheckerCli extends CLI
 {
+    /** @inheritdoc */
     public function setup(Options $options)
     {
         $options->setHelp($this->getHelpText());
@@ -35,6 +36,7 @@ class PhpDependencyCheckerCli extends CLI
         );
     }
 
+    /** @inheritdoc */
     protected function main(Options $options)
     {
         if (!$this->isValidCall($options)) {
