@@ -51,7 +51,7 @@ class PhpDependencyCheckerCli extends CLI
         }
 
         if (false !== $options->getOpt('version')) {
-            echo "Version: dev-master\n\n";
+            echo "Version: 0.1-beta\n\n";
 
             return;
         }
