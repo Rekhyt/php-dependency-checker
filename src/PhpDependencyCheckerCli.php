@@ -34,6 +34,12 @@ class PhpDependencyCheckerCli extends CLI
             null,
             'excludeFile'
         );
+        $options->registerOption(
+            'sensiolabs-endpoint',
+            'Override default endpoint https://security.sensiolabs.org/check_lock',
+            null,
+            'sensiolabsEndpoint'
+        );
     }
 
     /** @inheritdoc */
@@ -54,7 +60,10 @@ class PhpDependencyCheckerCli extends CLI
         $lockFileContents = $this->getLockFileContents($args[0]);
         $excludePackages  = $this->getExcludePackages($options->getOpt('exclude-from'));
 
-        $vulnerabilities = $this->buildRepository($excludePackages)->getAllByComposerLockFileContents($lockFileContents);
+        $vulnerabilities =
+            $this
+                ->buildRepository($excludePackages, $options->getOpt('sensiolabs-endpoint'))
+                ->getAllByComposerLockFileContents($lockFileContents);
 
         foreach ($vulnerabilities as $vulnerability) {
             echo "{$this->formatVulnerability($vulnerability)}\n\n";
@@ -69,11 +78,17 @@ class PhpDependencyCheckerCli extends CLI
 
     /**
      * @param PackageName[] $excludePackages
+     * @param string|bool   $sensiolabsEndpoint
+     *
      * @return Vulnerability|VulnerabilityFiltered
      */
-    private function buildRepository(array $excludePackages)
+    private function buildRepository(array $excludePackages, $sensiolabsEndpoint = false)
     {
-        $repository = new Vulnerability(new Client(), new ApiEndpoint('https://security.sensiolabs.org/check_lock'));
+        $sensiolabsEndpoint = false === $sensiolabsEndpoint
+            ? new ApiEndpoint('https://security.sensiolabs.org/check_lock')
+            : new ApiEndpoint($sensiolabsEndpoint);
+
+        $repository = new Vulnerability(new Client(), $sensiolabsEndpoint);
         if ((!empty($excludePackages))) {
             $repository = new VulnerabilityFiltered(
                 $repository,
@@ -88,6 +103,7 @@ class PhpDependencyCheckerCli extends CLI
 
     /**
      * @param Options $options
+     *
      * @return bool
      */
     private function isValidCall(Options $options)
@@ -101,6 +117,7 @@ class PhpDependencyCheckerCli extends CLI
 
     /**
      * @param string $lockFileArgumentValue
+     *
      * @return ComposerLockFileContents
      * @throws Exception
      */
@@ -115,6 +132,7 @@ class PhpDependencyCheckerCli extends CLI
 
     /**
      * @param string|bool $excludeFromOptionValue
+     *
      * @return PackageName[]
      * @throws Exception
      */
@@ -143,6 +161,7 @@ class PhpDependencyCheckerCli extends CLI
 
     /**
      * @param string $filePath
+     *
      * @return bool
      */
     private function fileExists($filePath)
@@ -153,6 +172,7 @@ class PhpDependencyCheckerCli extends CLI
 
     /**
      * @param string $originalFilePath
+     *
      * @return string
      */
     private function getFilePath($originalFilePath)
