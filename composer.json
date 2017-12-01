@@ -32,5 +32,15 @@
     "psr-4": {
       "Rekhyt\\PhpDependencyChecker\\Test\\": "test/"
     }
+  },
+  "extra": {
+    "phar-builder": {
+      "compression": "GZip",
+      "name": "php-dependency-checker.phar",
+      "output-dir": "release",
+      "entry-point": "php-dependency-checker",
+      "include-dev": false,
+      "skip-shebang": false
+    }
   }
 }

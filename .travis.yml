@@ -1,0 +1,25 @@
+sudo: false
+language: php
+
+php:
+- 5.6
+- 7.0
+
+before_script:
+- phpenv config-rm xdebug.ini || return 0
+- composer install
+
+script:
+- ./vendor/bin/phpunit ./tests/unit --bootstrap ./vendor/autoload.php
+- ./vendor/bin/phpunit ./tests/integration --bootstrap ./vendor/autoload.php
+- if [[ ${TRAVIS_PHP_VERSION:0:3} == "5.6" ]]; then ./release/build_phar.sh; fi
+
+deploy:
+  provider: releases
+  api_key:
+    secure: P0xz8OhPVogisar/rnz+cQpHpA1BefE8i2tUcR/lcHA2HWrSz8WmYghhGNu21ntFRKor8bR4jnQcpe5UPVykDOASVCnajHKsXgU2wuoXsN/PkP915NDQz4RU7U33jwZx0sAkLnkaOdHuM9lW9jx1U5DoqDAJuScrhum3mzcPkwKjlvK89V+BmJL2ylJBKRUhZHOrvAsThtF5xGMpYCmVOT2Oy4bx0rsoC+642xq7KuNPDf2X3raWxqQ03K1K1bYRewO5NqAo/ulEQBLbelRzg5Gq+2etrx8BuP0NlUpoPdDZoq+TKuC8shtsUXPqq5IiudWQZE+bk0AXZc7NF/79BtR4EmjDH54K57j469WxGRnIBBkmgc3d06CXt/VC7Z+Lw+Mn+baqdGxAkS13wtSpq9kDS/9VVAUi1tFtACQqCT3F4ltbwfMOKssMlrYCnA0/FFo0QtX69BOUv6LlvyFr3zpaypNeeyF9zv0ntaYVFO13OTbgY338PKKGizXR4BA1T/3dnLsYgZ7aE4qayoCqAA/pOORDIIZJv/XkXFYD+2PC3Plm+bIdzdVOesv5GcsvPOIld0GDHMiUnsq4401Xvk5BsupNCFW1U1i1rQ64OqwryCae/b3EW4Stmvop76XSkGOVVycwopF3vfdfUmA/PQN1ixuoVZpogHCXe333IXQ=
+  file: "release/php-dependency-checker.phar"
+  skip_cleanup: true
+  on:
+    tags: true
+    php: 5.6
