@@ -6,6 +6,5 @@ $cli = new \Rekhyt\PhpDependencyChecker\PhpDependencyCheckerCli();
 try {
     $cli->run();
 } catch (Exception $e) {
-    echo 'Unhandled Exception.'; // for the sake of completeness; should be caught by splitbrain/php-cli anyway
-    exit(127);
+    $cli->fatal($e);
 }
