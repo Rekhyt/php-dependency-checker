@@ -45,7 +45,7 @@ Put one package per line as referenced in composer.json:
     psr/cache
 
 ## Changelog
-to be done
+See the [CHANGELOG](CHANGELOG.md) if you're looking for a list of changes in this project.
 
 ## Contributing
 See the [CONTRIBUTING](CONTRIBUTING.md) file for more information on how to help making this a better piece of software.
