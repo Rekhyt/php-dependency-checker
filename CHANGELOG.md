@@ -18,4 +18,4 @@
 - first beta candidate of the php-dependency-checker
 
 [Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta1...HEAD
-[0.1-beta1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta1...0.1-beta
+[0.1-beta1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta...0.1-beta1
