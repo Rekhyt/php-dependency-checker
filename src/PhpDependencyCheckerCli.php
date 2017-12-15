@@ -8,20 +8,41 @@
 
 namespace Rekhyt\PhpDependencyChecker;
 
-use GuzzleHttp\Client;
-use Rekhyt\PhpDependencyChecker\Vulnerability\Entity\Vulnerability as VulnerabilityEntity;
-use Rekhyt\PhpDependencyChecker\Vulnerability\Filter\VulnerabilityListFilterPackageExceptionList;
-use Rekhyt\PhpDependencyChecker\Vulnerability\Repository\SLApi\Vulnerability;
-use Rekhyt\PhpDependencyChecker\Vulnerability\Repository\SLApi\VulnerabilityFiltered;
-use Rekhyt\PhpDependencyChecker\Vulnerability\ValueObject\ApiEndpoint;
-use Rekhyt\PhpDependencyChecker\Vulnerability\ValueObject\ComposerLockFileContents;
-use Rekhyt\PhpDependencyChecker\Vulnerability\ValueObject\PackageName;
+use Rekhyt\PhpDependencyChecker\Vulnerability\Factory\ComposerLockFileContentProvider;
+use Rekhyt\PhpDependencyChecker\Vulnerability\Factory\PackageExclusion;
+use Rekhyt\PhpDependencyChecker\Vulnerability\Factory\VulnerabilityProvider;
 use splitbrain\phpcli\CLI;
 use splitbrain\phpcli\Exception;
 use splitbrain\phpcli\Options;
 
 class PhpDependencyCheckerCli extends CLI
 {
+    /** @var VulnerabilityProvider */
+    private $slRepositoryFactory;
+
+    /** @var ComposerLockFileContentProvider */
+    private $composerLockFileContentRepositoryFactory;
+
+    /** @var PackageExclusion */
+    private $packageExclusionRepositoryFactory;
+
+    /**
+     * @param VulnerabilityProvider           $slRepositoryFactory
+     * @param ComposerLockFileContentProvider $composerLockFileContentRepositoryFactory
+     * @param PackageExclusion                $packageExclusionRepositoryFactory
+     */
+    public function __construct(
+        VulnerabilityProvider $slRepositoryFactory,
+        ComposerLockFileContentProvider $composerLockFileContentRepositoryFactory,
+        PackageExclusion $packageExclusionRepositoryFactory
+    ) {
+        parent::__construct(false);
+
+        $this->slRepositoryFactory                      = $slRepositoryFactory;
+        $this->composerLockFileContentRepositoryFactory = $composerLockFileContentRepositoryFactory;
+        $this->packageExclusionRepositoryFactory        = $packageExclusionRepositoryFactory;
+    }
+
     /** @inheritdoc */
     public function setup(Options $options)
     {
@@ -51,54 +72,38 @@ class PhpDependencyCheckerCli extends CLI
         }
 
         if (false !== $options->getOpt('version')) {
-            echo "Version: 0.1-beta1\n\n";
+            echo "Version: 0.2-beta\n\n";
 
             return;
         }
 
-        $args             = $options->getArgs();
-        $lockFileContents = $this->getLockFileContents($args[0]);
-        $excludePackages  = $this->getExcludePackages($options->getOpt('exclude-from'));
+        $args        = $options->getArgs();
+        $excludeFrom = $options->getOpt('exclude-from');
 
-        $vulnerabilities =
-            $this
-                ->buildRepository($excludePackages, $options->getOpt('sensiolabs-endpoint'))
-                ->getAllByComposerLockFileContents($lockFileContents);
+        $lockFileContent = $this
+            ->composerLockFileContentRepositoryFactory
+            ->buildFileRepository($args[0])
+            ->getContent();
 
-        foreach ($vulnerabilities as $vulnerability) {
-            echo "{$this->formatVulnerability($vulnerability)}\n\n";
-        }
+        $excludePackages = $excludeFrom
+            ? $this
+                ->packageExclusionRepositoryFactory
+                ->buildFileRepository($excludeFrom)
+                ->getPackageExclusions()
+            : [];
+
+        $vulnerabilities = $this
+            ->slRepositoryFactory
+            ->buildSLApiProvider($excludePackages, $options->getOpt('sensiolabs-endpoint', ''))
+            ->getAllByComposerLockFileContents($lockFileContent);
+
+        echo implode("\n\n", $vulnerabilities) . (empty($vulnerabilities) ? '' : "\n\n");
 
         if (empty($vulnerabilities)) {
             echo "Security check passed.\n\n";
         } else {
             throw new Exception('Security check not passed.', 1);
         }
-    }
-
-    /**
-     * @param PackageName[] $excludePackages
-     * @param string|bool   $sensiolabsEndpoint
-     *
-     * @return Vulnerability|VulnerabilityFiltered
-     */
-    private function buildRepository(array $excludePackages, $sensiolabsEndpoint = false)
-    {
-        $sensiolabsEndpoint = false === $sensiolabsEndpoint
-            ? new ApiEndpoint('https://security.sensiolabs.org/check_lock')
-            : new ApiEndpoint($sensiolabsEndpoint);
-
-        $repository = new Vulnerability(new Client(), $sensiolabsEndpoint);
-        if ((!empty($excludePackages))) {
-            $repository = new VulnerabilityFiltered(
-                $repository,
-                new VulnerabilityListFilterPackageExceptionList(
-                    $excludePackages
-                )
-            );
-        }
-
-        return $repository;
     }
 
     /**
@@ -113,99 +118,6 @@ class PhpDependencyCheckerCli extends CLI
         return
             isset($args[0]) ||
             false !== $options->getOpt('version');
-    }
-
-    /**
-     * @param string $lockFileArgumentValue
-     *
-     * @return ComposerLockFileContents
-     * @throws Exception
-     */
-    private function getLockFileContents($lockFileArgumentValue)
-    {
-        if (!$this->fileExists($this->getFilePath($lockFileArgumentValue))) {
-            throw new Exception('composer.lock not found: ' . $lockFileArgumentValue);
-        }
-
-        return new ComposerLockFileContents(file_get_contents($lockFileArgumentValue));
-    }
-
-    /**
-     * @param string|bool $excludeFromOptionValue
-     *
-     * @return PackageName[]
-     * @throws Exception
-     */
-    private function getExcludePackages($excludeFromOptionValue)
-    {
-        if (false === $excludeFromOptionValue) {
-            return [];
-        }
-
-        $excludeFromFilePath = $this->getFilePath($excludeFromOptionValue);
-        if (!$this->fileExists($excludeFromFilePath)) {
-            throw new Exception('Exclude file not found: ' . $excludeFromFilePath, 1);
-        }
-
-        $excludePackages = [];
-        foreach (explode("\n", file_get_contents($excludeFromFilePath)) as $package) {
-            if (empty($package)) {
-                continue;
-            }
-
-            $excludePackages[] = new PackageName($package);
-        }
-
-        return $excludePackages;
-    }
-
-    /**
-     * @param string $filePath
-     *
-     * @return bool
-     */
-    private function fileExists($filePath)
-    {
-        return
-            file_exists($filePath) && !is_dir($filePath);
-    }
-
-    /**
-     * @param string $originalFilePath
-     *
-     * @return string
-     */
-    private function getFilePath($originalFilePath)
-    {
-        return (0 === strpos($originalFilePath, '~') || 0 === strpos($originalFilePath, '/'))
-            ? $originalFilePath
-            : getcwd() . '/' . $originalFilePath;
-    }
-
-    private function formatVulnerability(VulnerabilityEntity $vulnerability)
-    {
-        $lines = [];
-
-        $vulnerabilityLabel = (count($vulnerability->getAdvisories()) > 1)
-            ? 'Vulnerabilities'
-            : 'Vulnerability';
-
-        $title =
-            "{$vulnerabilityLabel} found in {$vulnerability->getPackageName()}, version " .
-            "{$vulnerability->getPackageVersion()}:";
-
-        $title .= "\n" . str_repeat('-', strlen($title)) . "\n";
-
-        $lines[] = $title;
-
-        foreach ($vulnerability->getAdvisories() as $advisory) {
-            $lines[] = "* {$advisory->getTitle()}";
-            $lines[] = "  {$advisory->getLink()}";
-            $lines[] = "  {$advisory->getCve()}";
-            $lines[] = '';
-        }
-
-        return implode("\n", $lines);
     }
 
     /**

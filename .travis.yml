@@ -13,7 +13,7 @@ script:
 - ./vendor/bin/phpunit ./tests/unit --bootstrap ./vendor/autoload.php
 - ./vendor/bin/phpunit ./tests/integration --bootstrap ./vendor/autoload.php
 - ./php-dependency-checker --exclude-from=tests/fixtures/package-exclusion --sensiolabs-endpoint=http://security.sensiolabs.org/check_lock tests/fixtures/composer-vulnerable.lock.json
-- if [[ ${TRAVIS_PHP_VERSION:0:3} == "5.6" ]]; then ./release/build_phar.sh; fi
+- if [[ ${TRAVIS_PHP_VERSION:0:3} == "5.6" && "$TRAVIS_TAG" ]]; then ./release/build_phar.sh; fi
 
 deploy:
   provider: releases

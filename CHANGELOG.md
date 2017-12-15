@@ -2,7 +2,12 @@
 
 ## [Unreleased]
 
-[0.1-beta1]
+## [0.2-beta]
+### Changed
+- refactoring
+- code cleanup
+
+## [0.1-beta1]
 ### Added
 - this changelog
 
@@ -17,5 +22,6 @@
 ### Added
 - first beta candidate of the php-dependency-checker
 
-[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta1...HEAD
+[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/0.2-beta...HEAD
+[0.2-beta]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta1...0.2-beta
 [0.1-beta1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta...0.1-beta1

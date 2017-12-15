@@ -1,8 +1,19 @@
 #!/usr/bin/env php
 <?php
+
+use Rekhyt\PhpDependencyChecker\PhpDependencyCheckerCli;
+use Rekhyt\PhpDependencyChecker\Vulnerability\Factory\PackageExclusionFileRepository;
+use Rekhyt\PhpDependencyChecker\Vulnerability\Factory\VulnerabilitySLApiRepository;
+use Rekhyt\PhpDependencyChecker\Vulnerability\Factory\ComposerLockFileContentFileRepository;
+
 require_once __DIR__ . '/vendor/autoload.php';
 
-$cli = new \Rekhyt\PhpDependencyChecker\PhpDependencyCheckerCli();
+$cli = new PhpDependencyCheckerCli(
+    new VulnerabilitySLApiRepository(),
+    new ComposerLockFileContentFileRepository(),
+    new PackageExclusionFileRepository()
+);
+
 try {
     $cli->run();
 } catch (Exception $e) {
