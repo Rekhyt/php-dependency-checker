@@ -13,11 +13,8 @@ before_script:
 script:
 - ./vendor/bin/phpunit ./tests/unit --bootstrap ./vendor/autoload.php
 - ./vendor/bin/phpunit ./tests/integration --bootstrap ./vendor/autoload.php
-- ./php-dependency-checker --exclude-from=tests/fixtures/package-exclusion --sensiolabs-endpoint=http://security.sensiolabs.org/check_lock tests/fixtures/composer-vulnerable.lock.json
-- ./release/build_phar.sh
-- chmod +x ./release/php-dependency-checker.phar
-# check if it runs and self-check dependencies
-- ./release/php-dependency-checker.phar ./composer.lock
+- if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then ./release/build_phar.sh; fi
+- if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then chmod +x ./release/php-dependency-checker.phar && ./release/php-dependency-checker.phar ./composer.lock; fi
 
 deploy:
   provider: releases
@@ -27,4 +24,4 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    php: 7.0
+    php: 7.2
