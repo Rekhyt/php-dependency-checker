@@ -1,6 +1,7 @@
 # PHP Dependency Checker
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/Rekhyt/php-dependency-checker.svg?branch=master)](https://travis-ci.org/Rekhyt/php-dependency-checker)
+[![GitHub (pre-)release](https://img.shields.io/github/release/Rekhyt/php-dependency-checker/all.svg)](https://github.com/Rekhyt/php-dependency-checker/releases)
 
 A CLI tool to check your PHP project's dependencies for known security flaws.
 
@@ -19,8 +20,9 @@ For more information about how that API is working, refer to
 https://github.com/sensiolabs/security-checker.
 
 ## Installation
+### Download PHAR Archive
 The easiest way is to download the ready-to-use PHAR from the
-[releases page](https://github.com/Rekhyt/php-dependency-checker/releases).
+[releases page](https://github.com/Rekhyt/php-dependency-checker/releases) and simply run it.
 
 ### Install As Dependency
 To have this as a dependency in your project require it via composer:

@@ -2,8 +2,9 @@ sudo: false
 language: php
 
 php:
-- 5.6
 - 7.0
+- 7.1
+- 7.2
 
 before_script:
 - phpenv config-rm xdebug.ini || return 0
@@ -13,7 +14,7 @@ script:
 - ./vendor/bin/phpunit ./tests/unit --bootstrap ./vendor/autoload.php
 - ./vendor/bin/phpunit ./tests/integration --bootstrap ./vendor/autoload.php
 - ./php-dependency-checker --exclude-from=tests/fixtures/package-exclusion --sensiolabs-endpoint=http://security.sensiolabs.org/check_lock tests/fixtures/composer-vulnerable.lock.json
-- if [[ ${TRAVIS_PHP_VERSION:0:3} == "5.6" && "$TRAVIS_TAG" ]]; then ./release/build_phar.sh; fi
+- if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" && "$TRAVIS_TAG" ]]; then ./release/build_phar.sh; fi
 
 deploy:
   provider: releases
@@ -23,4 +24,4 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    php: 5.6
+    php: 7.0

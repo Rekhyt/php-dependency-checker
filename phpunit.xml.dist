@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2018 Timo Ebel
+  ~
+  ~ This work is licensed under the terms of the MIT license.
+  ~ For a copy, see <https://opensource.org/licenses/MIT> or the LICENSE file included in this project.
+  -->
+
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         backupGlobals="false"
+         bootstrap="vendor/autoload.php">
+    <testsuites>
+        <testsuite name="UnitTests">
+            <directory>tests/unit</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+</phpunit>
