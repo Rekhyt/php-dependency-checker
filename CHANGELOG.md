@@ -2,9 +2,10 @@
 
 ## [Unreleased]
 
-## [0.3-beta]
+## [1.0.0-beta.1]
 ### Changed
 - updated the default Sensiolabs API URL as the old one has gone out of service
+- introducing proper semver versioning, huh?
 
 ## [0.2-beta]
 ### Changed
@@ -26,6 +27,7 @@
 ### Added
 - first beta candidate of the php-dependency-checker
 
-[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/0.2-beta...HEAD
+[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0-beta.1...HEAD
+[1.0.0-beta.1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.2-beta...HEAD
 [0.2-beta]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta1...0.2-beta
 [0.1-beta1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta...0.1-beta1
