@@ -57,7 +57,7 @@ class PhpDependencyCheckerCli extends CLI
         );
         $options->registerOption(
             'sensiolabs-endpoint',
-            'Override default endpoint https://security.sensiolabs.org/check_lock',
+            'Override default endpoint https://security.symfony.com/check_lock',
             null,
             'sensiolabsEndpoint'
         );

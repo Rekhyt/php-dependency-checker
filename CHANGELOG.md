@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.3-beta]
+### Changed
+- updated the default Sensiolabs API URL as the old one has gone out of service
+
 ## [0.2-beta]
 ### Changed
 - refactoring
