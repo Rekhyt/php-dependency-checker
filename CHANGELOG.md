@@ -28,6 +28,6 @@
 - first beta candidate of the php-dependency-checker
 
 [Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0-beta.1...HEAD
-[1.0.0-beta.1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.2-beta...HEAD
+[1.0.0-beta.1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.2-beta...1.0.0-beta.1
 [0.2-beta]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta1...0.2-beta
 [0.1-beta1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta...0.1-beta1
