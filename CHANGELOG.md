@@ -2,8 +2,16 @@
 
 ## [Unreleased]
 
-## [1.0.0-beta.1]
+## [1.0.0]
+### Added
+- test coverage tracking / badge via PHPUnit & coveralls.io
+
 ### Changed
+- uses PHPUnit 7.x
+- minor changes in README.md
+
+## [1.0.0-beta.1]
+### Fixed
 - updated the default Sensiolabs API URL as the old one has gone out of service
 - introducing proper semver versioning, huh?
 
@@ -27,7 +35,8 @@
 ### Added
 - first beta candidate of the php-dependency-checker
 
-[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0-beta.1...HEAD
+[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0-beta.1...1.0.0
 [1.0.0-beta.1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.2-beta...1.0.0-beta.1
 [0.2-beta]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta1...0.2-beta
 [0.1-beta1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta...0.1-beta1
