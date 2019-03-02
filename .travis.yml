@@ -10,8 +10,7 @@ before_script:
 - composer install
 
 script:
-- ./vendor/bin/phpunit ./tests/unit --bootstrap ./vendor/autoload.php
-- ./vendor/bin/phpunit ./tests/integration --bootstrap ./vendor/autoload.php
+- if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then composer coveralls; else composer test; fi
 - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then ./release/build_phar.sh; fi
 - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" && "$TRAVIS_TAG" ]]; then chmod +x ./release/php-dependency-checker.phar && ./release/php-dependency-checker.phar ./composer.lock; fi
 

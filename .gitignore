@@ -1,3 +1,6 @@
 .idea/
 vendor/
 release/php-dependency-checker.phar
+build/
+!*/.gitkeep
+.coveralls.yml

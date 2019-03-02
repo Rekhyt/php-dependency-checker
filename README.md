@@ -1,12 +1,13 @@
 # PHP Dependency Checker
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/Rekhyt/php-dependency-checker.svg?branch=master)](https://travis-ci.org/Rekhyt/php-dependency-checker)
+[![Coverage Status](https://coveralls.io/repos/github/Rekhyt/php-dependency-checker/badge.svg?branch=master)](https://coveralls.io/github/Rekhyt/php-dependency-checker?branch=master)
 [![GitHub (pre-)release](https://img.shields.io/github/release/Rekhyt/php-dependency-checker/all.svg)](https://github.com/Rekhyt/php-dependency-checker/releases)
 
 A CLI tool to check your PHP project's dependencies for known security flaws.
 
 ## How Does It Work?
-Currently, very simple: It will take your composer.lock file, send it to https://security.sensiolabs.org/check_lock
+It will take your composer.lock file, send it to https://security.symfony.com/check_lock
 and present the results.
 
 For build & deployment integration it will exit with an exit code of
@@ -16,13 +17,12 @@ For build & deployment integration it will exit with an exit code of
 To be able to build even if your dependencies have vulnerabilities that don't affect your project (flawed code not used)
 or there is no update, yet, an exception list can be defined.
 
-For more information about how that API is working, refer to
-https://github.com/sensiolabs/security-checker.
+For more information on how that API is working, refer to https://github.com/sensiolabs/security-checker.
 
 ## Installation
 ### Download PHAR Archive
-The easiest way is to download the ready-to-use PHAR from the
-[releases page](https://github.com/Rekhyt/php-dependency-checker/releases) and simply run it.
+You can download a ready-to-use PHAR from the
+[releases page](https://github.com/Rekhyt/php-dependency-checker/releases).
 
 ### Install As Dependency
 To have this as a dependency in your project require it via composer:

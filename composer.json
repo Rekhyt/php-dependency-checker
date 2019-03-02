@@ -8,9 +8,17 @@
       "email": "timo.ebel@gmail.com"
     }
   ],
+  "scripts": {
+    "test": "phpunit",
+    "test-unit": "phpunit --testsuite unit",
+    "test-integration": "phpunit --suites=integration",
+    "cover-html": "phpunit --coverage-html build/coverage-html",
+    "cover-clover": "phpunit --coverage-clover build/clover.xml",
+    "coveralls": "composer cover-clover && php-coveralls -x build/clover.xml -o build/coveralls.json"
+  },
   "config": {
     "platform": {
-      "php": "7.0"
+      "php": "7.2"
     }
   },
   "require": {
@@ -21,7 +29,8 @@
     "splitbrain/php-cli": "^1.1.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "~5.7"
+    "phpunit/phpunit": "^7.1",
+    "php-coveralls/php-coveralls": "^2.1"
   },
   "autoload": {
     "psr-4": {
