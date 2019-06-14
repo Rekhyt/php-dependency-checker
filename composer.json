@@ -16,6 +16,7 @@
     "cover-clover": "phpunit --coverage-clover build/clover.xml",
     "coveralls": "composer cover-clover && php-coveralls -x build/clover.xml -o build/coveralls.json"
   },
+  "bin": ["php-dependency-checker"],
   "config": {
     "platform": {
       "php": "7.2"
@@ -24,7 +25,7 @@
   "require": {
     "php": ">=7.0",
     "ext-json": "*",
-    "rekhyt/ddd-base": "^0.1-beta",
+    "rekhyt/ddd-base": "^1.0.0",
     "guzzlehttp/guzzle": "^6.0.0",
     "splitbrain/php-cli": "^1.1.1"
   },

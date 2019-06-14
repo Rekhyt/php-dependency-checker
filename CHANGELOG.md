@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [1.0.1]
+### Added
+- `php-dependency-checker` to the Composer `bin` section
+
+### Changed
+- all dependencies are now required in stable versions
+
 ## [1.0.0]
 ### Added
 - test coverage tracking / badge via PHPUnit & coveralls.io
@@ -35,7 +42,8 @@
 ### Added
 - first beta candidate of the php-dependency-checker
 
-[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0-beta.1...1.0.0
 [1.0.0-beta.1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.2-beta...1.0.0-beta.1
 [0.2-beta]: https://github.com/Rekhyt/php-dependency-checker/compare/0.1-beta1...0.2-beta
