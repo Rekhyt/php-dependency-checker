@@ -39,7 +39,7 @@ to a file that contains the exceptions.
 ### Composer Binary
 Run directly from console like this:
 
-    ./vendor/bin/php dependency-checker --exclude-from exclusion-list composer.lock
+    ./vendor/bin/php-dependency-checker --exclude-from exclusion-list composer.lock
 
 Or add a composer script to your `composer.json` file:
 
