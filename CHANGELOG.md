@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.2]
+### Fixed
+- auto-loading when run as composer vendor
+
 ## [1.0.1]
 ### Added
 - `php-dependency-checker` to the Composer `bin` section
@@ -42,7 +46,8 @@
 ### Added
 - first beta candidate of the php-dependency-checker
 
-[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.1...HEAD
+[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.2...HEAD
+[1.0.2]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0-beta.1...1.0.0
 [1.0.0-beta.1]: https://github.com/Rekhyt/php-dependency-checker/compare/0.2-beta...1.0.0-beta.1
