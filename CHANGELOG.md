@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [1.0.3]
+### Changed
+- lowest required PHP version changed from 7.2 to 5.6
+- uses phpunit/phpunit ^5
+- uses rekhyt/ddd-base ^1.0.1
+
 ## [1.0.2]
 ### Fixed
 - auto-loading when run as composer vendor
@@ -46,7 +52,8 @@
 ### Added
 - first beta candidate of the php-dependency-checker
 
-[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.2...HEAD
+[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.3...HEAD
+[1.0.2]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0-beta.1...1.0.0
