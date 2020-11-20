@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+
+## [1.0.4]
 ### Fixed
 - empty CVE causes checker to crash
 - PHAR execution not working anymore when file was renamed
@@ -58,7 +61,8 @@
 ### Added
 - first beta candidate of the php-dependency-checker
 
-[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.3...HEAD
+[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.4...HEAD
+[1.0.4]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.4...1.0.3
 [1.0.3]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.0...1.0.1
