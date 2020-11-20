@@ -1,6 +1,12 @@
 # Changelog
 
 ## [Unreleased]
+### Fixed
+- empty CVE causes checker to crash
+- PHAR execution not working anymore when file was renamed
+
+### Changed
+- when the exclusion file cannot be found that will just show an error but won't break anymore
 
 ## [1.0.3]
 ### Changed
