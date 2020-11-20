@@ -11,6 +11,7 @@ namespace Rekhyt\PhpDependencyChecker;
 use Rekhyt\PhpDependencyChecker\Vulnerability\Factory\ComposerLockFileContentProvider;
 use Rekhyt\PhpDependencyChecker\Vulnerability\Factory\PackageExclusion;
 use Rekhyt\PhpDependencyChecker\Vulnerability\Factory\VulnerabilityProvider;
+use Rekhyt\PhpDependencyChecker\Vulnerability\Repository\Provider\FetchingPackageExclusionFailedException;
 use splitbrain\phpcli\CLI;
 use splitbrain\phpcli\Exception;
 use splitbrain\phpcli\Options;
@@ -85,12 +86,17 @@ class PhpDependencyCheckerCli extends CLI
             ->buildFileRepository($args[0])
             ->getContent();
 
-        $excludePackages = $excludeFrom
-            ? $this
-                ->packageExclusionRepositoryFactory
-                ->buildFileRepository($excludeFrom)
-                ->getPackageExclusions()
-            : [];
+        try {
+            $excludePackages = $excludeFrom
+                ? $this
+                    ->packageExclusionRepositoryFactory
+                    ->buildFileRepository($excludeFrom)
+                    ->getPackageExclusions()
+                : [];
+        } catch (FetchingPackageExclusionFailedException $e) {
+            $this->error($e->getMessage());
+            $excludePackages = [];
+        }
 
         $vulnerabilities = $this
             ->slRepositoryFactory
