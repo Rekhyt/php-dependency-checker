@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [1.0.5]
+### Fixed
+- compatibility with Laravel 8 requiring Guzzle ^7.0.0 (thank you @vbezaras-sportspar)
+- the composer script that runs integration tests
+- composer auto-loading (dev) for tests
 
 ## [1.0.4]
 ### Fixed
@@ -61,7 +66,8 @@
 ### Added
 - first beta candidate of the php-dependency-checker
 
-[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.4...HEAD
+[Unreleased]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.5...HEAD
+[1.0.5]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.5...1.0.4
 [1.0.4]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.4...1.0.3
 [1.0.3]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/Rekhyt/php-dependency-checker/compare/1.0.1...1.0.2
