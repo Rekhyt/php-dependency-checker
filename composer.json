@@ -11,7 +11,7 @@
   "scripts": {
     "test": "phpunit",
     "test-unit": "phpunit --testsuite unit",
-    "test-integration": "phpunit --suites=integration",
+    "test-integration": "phpunit --testsuite integration",
     "cover-html": "phpunit --coverage-html build/coverage-html",
     "cover-clover": "phpunit --coverage-clover build/clover.xml",
     "coveralls": "composer cover-clover && php-coveralls -x build/clover.xml -o build/coveralls.json"
@@ -40,7 +40,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Rekhyt\\PhpDependencyChecker\\Test\\": "test/"
+      "Rekhyt\\PhpDependencyChecker\\Test\\": "tests/"
     }
   },
   "extra": {
