@@ -1,3 +1,5 @@
+# !!! THIS TOOL HAS STOPPED WORKING WITH THE EOL OF THE SYMFONY SECURTIY CHECKER SERVICE !!!
+
 # PHP Dependency Checker
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/Rekhyt/php-dependency-checker.svg?branch=master)](https://travis-ci.org/Rekhyt/php-dependency-checker)
